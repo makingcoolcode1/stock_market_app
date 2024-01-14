@@ -2,11 +2,15 @@
 package com.stockapp;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,24 +22,23 @@ public class stockappnogui {
 
     public static void main(String[] args) {
         
-        System.out.println("Enter a ticker to searhc or type 'quit' to exit");
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a stock ticker to search or type 'quit' at anytime to exit \n");
 
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
 
-            String useRInput = scanner.nextLine();
-            if (useRInput.equals("quit")) {
-                System.out.println("Exitng Application");
+            String userInput = scanner.nextLine();
+            if (userInput.equals("quit")) {
+                System.out.println("\nExiting Stock App \n");
                 break;
                 
             }
 
             try {
-
-                URI uri = new URI(buildApiUrl(useRInput));
+                
+                URI uri = new URI(buildApiUrl(userInput));
                 URL url = uri.toURL();
-
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -47,27 +50,35 @@ public class stockappnogui {
 
                     StringBuffer response = new StringBuffer();
 
-                    while ((line = reader.readLine())!= null) {
+                    while ((line = reader.readLine())!=null) {
                         response.append(line);
                         
                     }
 
-                    parseStockData(response.toString(), useRInput);
+                    parseStockData(response.toString(), userInput);
+
+                    reader.close();
                     
                 } else {
-                    System.out.println("ERROR: Cannot connect to API. ERROR CODE: ");
+                    System.out.println("ERROR: Cannot connect to API.... ERROR CODE " + connection.getConnectTimeout());
                 }
-    
-                
-            } catch (Exception e) {
+
+
+                connection.disconnect();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            
+
+
         }
     }
 
     public static String buildApiUrl(String userInput) {
-
+        
         String symbols = userInput;
         String interval = "1min";
 
@@ -75,33 +86,30 @@ public class stockappnogui {
     }
 
     private static void parseStockData(String getData, String symbol) {
-
-
+        
         JSONObject json = new JSONObject(getData);
-        JSONArray data = json.getJSONArray("values")
-;
-        for (int i = 0; i < data.length(); i++) {
-            JSONObject entry = data.getJSONObject(i);
+
+        JSONArray data = json.getJSONArray("values");
 
 
-        String openPrice = entry.getString("open");
-        String highPrice = entry.getString("high");
-        String lowPrice = entry.getString("low");
-        String closePrice = entry.getString("close");
+            JSONObject entry = data.getJSONObject(0);
 
-        
+            String openPrice = entry.getString("open");
+            String highPrice = entry.getString("high");
+            String lowPrice = entry.getString("low");
+            String closePrice = entry.getString("close");
 
-        System.out.println("\n" + openPrice);
-        System.out.println("\n" + highPrice);
-        System.out.println("\n" + lowPrice);
-        System.out.println("\n" + closePrice);
+            System.out.println("The opening price is: " + openPrice);
+            System.out.println("The high price is " + highPrice);
+            System.out.println("The low price is " + lowPrice);
+            System.out.println("The closing price is " + closePrice);
+
+
+            
+
         }
-        
 
+    
 
-
-        
-
-    }
-
+    
 }
