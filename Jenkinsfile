@@ -19,7 +19,7 @@ pipeline {
             steps{
                 script{
                     def mavenCmd = tool 'maven1'
-                    sh "${mavenCmd} compile"
+                    sh "${mavenCmd} clean compile"
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps{
                 script{
                     def mavenCmd = tool 'maven1'
-                    sh "${mavenCmd} compile"
+                    sh "${mavenCmd} test"
                 }
             } 
         }
@@ -37,7 +37,7 @@ pipeline {
             steps{
                 script {
                     def mavenCmd = tool 'maven1'
-                    sh "${mavenCmd} compile"
+                    sh "${mavenCmd} install"
                 }
             }
         }
