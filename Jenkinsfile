@@ -18,7 +18,7 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    sh 'java -co . com/stockapp/stockappnogui.java'
+                    sh 'java -cp . com/stockapp/stockappnogui.java'
                 }
             }
         }
