@@ -33,8 +33,12 @@ pipeline {
     }
 
     post{
-        always{
-            checkout()
+        success{
+            echo 'Pipeline Build Success!'
+        }
+
+        failure{
+            echo 'Pipeline Failed!'
         }
     }
 }
