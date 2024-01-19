@@ -1,21 +1,32 @@
 pipeline {
     agent any
 
-    stages{
-        stage('Build'){
+    environment {
+        JAVA_HOME = tool 'JDK' // Assuming JDK is configured in Jenkins Tools
+        PATH = "$JAVA_HOME/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Build') {
             steps {
                 script {
-                    def mvnHome = tool 'Maven'
-                    def javaHome = tool 'JDK11'
-
-                    env.PATH = "${javaHome}/bin:${mvnHome}/bin:${env.PATH}"
-
-                    dir('/home/zach/Documents/javacode/stockAppNoGui/stockApp') {
-                        sh "mvn clean package"
-                    }
+                    sh 'javac -cp . com/stockapp/stockappnogui.java'
                 }
             }
+        }
 
+        stage('Test') {
+            steps {
+                script {
+                    sh 'java -cp . com.stockapp.stockappnogui'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
