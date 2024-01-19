@@ -22,6 +22,13 @@ pipeline {
                     sh 'java -cp . com.stockapp.stockappnogui'
                 }
             }
+            
+        }
+
+        stage('Install Dependencies') {
+            steps{
+                sh 'mvn clean install'
+            }
         }
     }
 
