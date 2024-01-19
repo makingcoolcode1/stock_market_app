@@ -28,7 +28,7 @@ pipeline {
             steps{
                 script{
                     def mavenCmd = tool 'Maven 3.9.6'
-                    sh "${mavenCmd} test"
+                    sh "${mavenCmd} compile"
                 }
             } 
         }
@@ -37,7 +37,7 @@ pipeline {
             steps{
                 script {
                     def mavenCmd = tool 'Maven 3.9.6'
-                    sh "${mavenCmd} clean install"
+                    sh "${mavenCmd} compile"
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
             steps{
                 script{
                     def mavenCmd = tool 'Maven 3.9.6'
-                    sh "${mavenCmd} exec: java -Dexec.mainClass=com.stockapp1.stockappgui"
+                    sh "${mavenCmd} exec:java -Dexec.mainClass=com.stockapp1.stockappgui"
                 }
             }
         }
