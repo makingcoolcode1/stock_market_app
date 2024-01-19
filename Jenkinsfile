@@ -27,13 +27,14 @@ pipeline {
                 script{
                     sh 'mvn test'
                 }
-            }
-            
+            } 
         }
 
         stage('Install Dependencies') {
             steps{
-                sh 'mvn clean install'
+                script {
+                    sh 'mvn clean install'
+                }
             }
         }
 
