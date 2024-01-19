@@ -19,6 +19,9 @@ pipeline {
             steps{
                 script{
                     def mavenCmd = tool 'maven1'
+                    sh 'echo $PATH'
+                    sh 'which mvn'
+                    sh "ls -l ${mavenCmd}"
                     sh "${mavenCmd} clean compile"
                 }
             }
