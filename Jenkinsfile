@@ -18,7 +18,7 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    def mavenCmd = tool 'Maven 3.9.6'
+                    def mavenCmd = tool 'Maven'
                     sh "${mavenCmd} compile"
                 }
             }
