@@ -18,7 +18,7 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    def mavenCmd = tool 'Maven'
+                    def mavenCmd = tool 'maven1'
                     sh "${mavenCmd} compile"
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
         stage('Test'){
             steps{
                 script{
-                    def mavenCmd = tool 'Maven'
+                    def mavenCmd = tool 'maven1'
                     sh "${mavenCmd} compile"
                 }
             } 
@@ -36,7 +36,7 @@ pipeline {
         stage('Install Dependencies') {
             steps{
                 script {
-                    def mavenCmd = tool 'Maven'
+                    def mavenCmd = tool 'maven1'
                     sh "${mavenCmd} compile"
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
         stage ('Run Application') {
             steps{
                 script{
-                    def mavenCmd = tool 'Maven'
+                    def mavenCmd = tool 'maven1'
                     sh "${mavenCmd} exec:java -Dexec.mainClass=com.stockapp1.stockappgui"
                 }
             }
