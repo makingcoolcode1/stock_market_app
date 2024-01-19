@@ -18,15 +18,14 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    sh 'java -cp target/classes com.stockapp1.stockappnogui'
-                }
+                    sh 'mvn compile'
             }
         }
 
         stage('Test'){
             steps{
                 script{
-                    sh 'java -cp target/classes com.stockapp1.stockappnogui'
+                    sh 'mvn test'
                 }
             }
             
@@ -35,6 +34,14 @@ pipeline {
         stage('Install Dependencies') {
             steps{
                 sh 'mvn clean install'
+            }
+        }
+
+        stage ('Run Application') {
+            steps{
+                script{
+                    sh 'java -cp target/classes com.stockapp1.stockappnogui'
+                }
             }
         }
     }
