@@ -18,7 +18,7 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    def mvnCmd = tool 'Maven 3.9.6'
+                    def mavenCmd = tool 'Maven 3.9.6'
                     sh "${mavenCmd} compile"
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
         stage('Test'){
             steps{
                 script{
-                    def mvnCmd = tool 'Maven 3.9.6'
+                    def mavenCmd = tool 'Maven 3.9.6'
                     sh "${mavenCmd} test"
                 }
             } 
@@ -36,7 +36,7 @@ pipeline {
         stage('Install Dependencies') {
             steps{
                 script {
-                    def mvnCmd = tool 'Maven 3.9.6'
+                    def mavenCmd = tool 'Maven 3.9.6'
                     sh "${mavenCmd} clean install"
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
         stage ('Run Application') {
             steps{
                 script{
-                    def mvnCmd = tool 'Maven 3.9.6'
+                    def mavenCmd = tool 'Maven 3.9.6'
                     sh "${mavenCmd} exec: java -Dexec.mainClass=com.stockapp1.stockappgui"
                 }
             }
