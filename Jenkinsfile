@@ -10,7 +10,7 @@ pipeline {
 
                     env.PATH = "${javaHome}/bin:${mvnHome}/bin:${env.PATH}"
 
-                    dir('/home/zach/Documents/javacode/stockAppNoGui') {
+                    dir('/home/zach/Documents/javacode/stockAppNoGui/stockApp') {
                         sh "mvn clean package"
                     }
                 }
