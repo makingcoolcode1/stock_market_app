@@ -19,6 +19,7 @@ pipeline {
             steps{
                 script{
                     sh 'mvn compile'
+                }
             }
         }
 
