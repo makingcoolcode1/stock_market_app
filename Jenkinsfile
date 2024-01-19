@@ -56,7 +56,7 @@ pipeline {
                 script{
                     sh 'echo $PATH'
                     sh 'which mvn'
-                    sh 'ls -l /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.9.6/bin/mvn '
+                    sh 'ls -l /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.9.6 '
                 }
             }
         }
