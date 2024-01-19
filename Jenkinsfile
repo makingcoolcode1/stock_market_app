@@ -18,7 +18,7 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    sh 'java -cp /home/zach/Documents/javacode/stockAppNoGui/stockApp/src/main/java/com/stockapp'
+                    sh 'java -cp . com.stockapp.stockappnogui'
                 }
             }
         }
