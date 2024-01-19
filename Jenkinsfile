@@ -2,10 +2,9 @@
 pipeline {
     agent any
 
-    environment {
-        MAVEN_HOME = tool 'Maven 3.9.6'
-        JAVA_HOME = tool 'JDK11'
-        PATH = "$JAVA_HOME/bin:${env.PATH}"
+    tools {
+        maven 'Maven 3.9.6'
+        jdk 'JDK11'
     }
 
     stages{
