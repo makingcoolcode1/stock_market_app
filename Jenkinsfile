@@ -18,7 +18,7 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    sh 'java -cp . com.stockapp1.stockappnogui'
+                    sh 'java -cp target/classes com.stockapp1.stockappnogui'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Test'){
             steps{
                 script{
-                    sh 'java -cp . com.stockapp1.stockappnogui'
+                    sh 'java -cp target/classes com.stockapp1.stockappnogui'
                 }
             }
             
