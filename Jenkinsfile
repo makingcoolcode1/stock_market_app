@@ -19,6 +19,7 @@ pipeline {
             steps{
                 script{
                     def mavenCmd = tool 'maven1'
+                    def projectPath = "/var/jenkins_home/workspace/stock_app_non_gui"
                     sh 'echo $PATH'
                     sh 'which mvn'
                     sh "ls -l ${mavenCmd}"
