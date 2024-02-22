@@ -7,16 +7,18 @@ pipeline{
                 checkout scm
             }
         }
-    }
-    stage('SonarQube Analysis'){
-        steps{
-            script{
-                def sonarHome = tool 'sonar_scanner_1';
-                withSonarQubeEnv(){
-                    sh "${scannerHome/bin/sonar_scanner_1}"
+
+        stage('SonarQube Analysis'){
+            steps{
+                script{
+                    def scannerHome = tool 'sonar_scanner_1';
+                    withSonarQubeEnv() {
+                        sh "${scannerHome}/bin/sonar_scanner_1"
+                    }
                 }
             }
         }
+
     }
-    
+
 }
